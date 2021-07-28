@@ -1,0 +1,15 @@
+<script>
+const evtSource = new EventSource("ssedemo.php");
+const evtSource = new EventSource("//api.example.com/ssedemo.php", { withCredentials: true } );
+evtSource.onmessage = function(event) {
+  const newElement = document.createElement("li");
+  const eventList = document.getElementById("list");
+
+  newElement.textContent = "message: " + event.data;
+  eventList.appendChild(newElement);
+}
+evtSource.onerror = function(err) {
+  console.error("EventSource failed:", err);
+};
+evtSource.close();
+</script>
